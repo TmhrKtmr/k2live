@@ -26,8 +26,8 @@ public class MainActivity extends ActionBarActivity {
 
     private double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
     private double[] PERFECT_2 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
-//    private double[] PERFECT_3 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
-//    private double[] PERFECT_4 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
+    private double[] PERFECT_3 = { 9.0, 18.0, 27.0 };
+    private double[] PERFECT_4 = { 7.0, 14.0, 21.0, 28.0 };
 
     private SoundPool mSoundPool;
     private int mSoundID1;
@@ -190,8 +190,10 @@ public class MainActivity extends ActionBarActivity {
         //Log.i("count",count+"");
 
         if (v.getId() == R.id.button2) {
+            TapResult result = checkTapResult(count, PERFECT_2);
             if (judgeImage.getVisibility() == View.INVISIBLE) {
-                if ((4.99 <= count && count <= 5.0) || (9.99 <= count && count <= 10.0) || (14.9 <= count && count <= 15.1) || (19.9 <= count && count <= 20.1) || (24.9 <= count && count <= 25.1)) {
+
+                if (result == TapResult.PERFECT) {
                     judgeImage.setVisibility(View.VISIBLE);
                     missImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button2).setEnabled(true);
@@ -200,7 +202,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 judgeImage.setVisibility(View.INVISIBLE);
 
-                if ((4 <= count && count <= 4.8) || (5.2 <= count && count <= 6) || (9 <= count && count <= 9.8) || (10.2 <= count && count <= 11) || (14 <= count && count <= 14.8) || (15.2 <= count && count <= 16) || (19 <= count && count <= 19.8) || (20.2 <= count && count <= 21) || (24 <= count && count <= 24.8) || (25.2 <= count && count <= 26)) {
+                if (result == TapResult.MISS) {
                     missImage.setVisibility(View.VISIBLE);
                     judgeImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button2).setEnabled(true);
@@ -216,8 +218,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         if (v.getId() == R.id.button3) {
+            TapResult result = checkTapResult(count, PERFECT_3);
             if (judgeImage.getVisibility() == View.INVISIBLE) {
-                if ((8.9 <= count && count <= 9.1) || (17.9 <= count && count <= 18.1) || (26.9 <= count && count <= 27.1)) {
+
+                if (result == TapResult.PERFECT) {
                     judgeImage.setVisibility(View.VISIBLE);
                     missImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button3).setEnabled(true);
@@ -226,7 +230,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 judgeImage.setVisibility(View.INVISIBLE);
 
-                if ((8 <= count && count <= 8.8) || (9.2 <= count && count <= 10) || (17 <= count && count <= 17.8) || (18.2 <= count && count <= 19) || (26 <= count && count <= 26.8) || (27.2 <= count && count <= 28)) {
+                if (result == TapResult.MISS) {
                     missImage.setVisibility(View.VISIBLE);
                     judgeImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button3).setEnabled(true);
@@ -242,8 +246,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         if (v.getId() == R.id.button4) {
+            TapResult result = checkTapResult(count, PERFECT_4);
             if (judgeImage.getVisibility() == View.INVISIBLE) {
-                if ((6.9 <= count && count <= 7.1) || (13.9 <= count && count <= 14.1) || (20.9 <= count && count <= 21.1) || (27.9 <= count && count <= 28.1)) {
+
+                if (result == TapResult.PERFECT) {
                     judgeImage.setVisibility(View.VISIBLE);
                     missImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button4).setEnabled(true);
@@ -252,7 +258,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 judgeImage.setVisibility(View.INVISIBLE);
 
-                if ((6 <= count && count <= 6.8) || (7.2 <= count && count <= 8) || (13 <= count && count <= 13.8) || (14.2 <= count && count <= 15) || (20 <= count && count <= 20.8) || (21.2 <= count && count <= 22) || (27 <= count && count <= 27.8) || (28.2 <= count && count <= 29)) {
+                if (result == TapResult.MISS) {
                     missImage.setVisibility(View.VISIBLE);
                     judgeImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button4).setEnabled(true);
@@ -267,6 +273,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     }
+
 
     private TapResult checkTapResult(int count, double[] array) {
         if (checkTiming(count, array, 0.01)) return TapResult.PERFECT;
@@ -401,3 +408,4 @@ public class MainActivity extends ActionBarActivity {
 //        animSetXY4.playTogether(animX4, animY4);
 //        animSetXY4.setDuration(3000);
 //        animSetXY4.start();
+
