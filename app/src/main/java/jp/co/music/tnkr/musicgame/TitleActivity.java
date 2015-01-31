@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-/**
- * Created by yukumo3621 on 2015/01/31.
- */
 public class TitleActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
