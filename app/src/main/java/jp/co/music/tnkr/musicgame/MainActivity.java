@@ -21,7 +21,6 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class MainActivity extends ActionBarActivity {
 
     private double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
@@ -273,7 +272,6 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     }
-
 
     private TapResult checkTapResult(int count, double[] array) {
         if (checkTiming(count, array, 0.01)) return TapResult.PERFECT;
