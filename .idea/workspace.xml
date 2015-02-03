@@ -39,12 +39,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8a48d9d-4ec8-40f6-9b99-0d63be1bc0c7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/ResultActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_result.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/TitleActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/TitleActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MusicGame.iws" />
@@ -1292,7 +1286,11 @@
       <created>1422697669535</created>
       <updated>1422697669535</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ゲーム終了からの画面遷移追加">
+      <created>1423001341814</created>
+      <updated>1423001341814</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1349,7 +1347,8 @@
     <MESSAGE value="ボタン3,4にも配列を適用" />
     <MESSAGE value="タイトル画面(仮)からの画面遷移" />
     <MESSAGE value="タイトル画面(仮)からの画面遷移(戻るボタンで終了追加)" />
-    <option name="LAST_COMMIT_MESSAGE" value="タイトル画面(仮)からの画面遷移(戻るボタンで終了追加)" />
+    <MESSAGE value="ゲーム終了からの画面遷移追加" />
+    <option name="LAST_COMMIT_MESSAGE" value="ゲーム終了からの画面遷移追加" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
