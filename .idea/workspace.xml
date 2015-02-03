@@ -1294,7 +1294,11 @@
       <created>1423001359066</created>
       <updated>1423001359066</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="ゲーム終了からの画面遷移追加">
+      <created>1423001392546</created>
+      <updated>1423001392546</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
