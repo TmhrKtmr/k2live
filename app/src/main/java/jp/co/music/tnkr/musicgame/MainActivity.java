@@ -2,6 +2,7 @@ package jp.co.music.tnkr.musicgame;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -41,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
     private TextView countText1;             //テキストビュー
     private int count = 0;                    //カウント
     private Handler mHandler = new Handler(); //UI Threadへのpost用ハンドラ
+    private int musicTime = 33;//曲の時間
 
     private Animation outAnimation;
     private ImageView judgeImage;
@@ -50,7 +52,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ボタン
+
+        //開始時ボタンを押せなくする
         findViewById(R.id.button1).setEnabled(false);
         findViewById(R.id.button2).setEnabled(false);
         findViewById(R.id.button3).setEnabled(false);
@@ -65,7 +68,6 @@ public class MainActivity extends ActionBarActivity {
 
         //BGM
         gameBgm = MediaPlayer.create(this, R.raw.piano08);// BGMファイルを読み込み
-//        gameBgm.setLooping(true);// ループ設定
 
         //タイマーインスタンス生成
         this.mainTimer = new Timer();
@@ -82,28 +84,6 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.miss_image).setVisibility(View.INVISIBLE);
         outAnimation = (Animation) AnimationUtils.loadAnimation(this, R.anim.out_animation);
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void onStart(View v) {
@@ -300,15 +280,26 @@ public class MainActivity extends ActionBarActivity {
                 public void run() {
 
                     //実行間隔分を加算処理
-                    count += 1;
+                    count += 1.0;
                     //画面にカウントを表示
                     countText1.setText(String.valueOf(count));
 
+                    musicTime--;
+                    if (musicTime <= 0) {
+                        musicEnd();
+                    }
                 }
             });
         }
     }
+    private void musicEnd() {
+        mainTimer.cancel();
+        mainTimer = null;
+        Intent intent = new Intent(this,ResultActivity.class);
+        startActivity(intent);
+        MainActivity.this.finish();
 
+    }
 //    @Override
 //    protected void onPause(){
 //        super.onPause();
@@ -354,6 +345,27 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return false;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 

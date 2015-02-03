@@ -16,8 +16,5 @@ public class TitleActivity extends Activity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         TitleActivity.this.finish();
-//        Intent intent = new Intent();
-//        intent.setClassName("jp.co.music.tnkr.musicgame", "jp.co.music.tnkr.musicgame.MainActivity");
-//        startActivity(intent);
     }
 }
