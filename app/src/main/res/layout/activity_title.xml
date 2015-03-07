@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="タイトル"
-        android:textSize="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp" />
+    android:layout_height="match_parent"
+    android:background="@drawable/title_back">
 
-    <Button
+
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/start"
+            android:background="#00FFFFFF"
+            android:id="@+id/gameStart"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="93dp"
+            android:onClick="onStart"
+            android:layout_gravity="center_horizontal|bottom" />
+
+    <ImageView
+        android:id="@+id/textView1"
+        android:layout_width="437dp"
+        android:layout_height="69dp"
+        android:src="@drawable/title_logo"
+        android:background="#00FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="62dp"
+        android:layout_gravity="center" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView5"
+        android:src="@drawable/niwakamon"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="-160dp" />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="START(後でImageButtonに差し替える)"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="93dp"
-        android:onClick="onStart" />
-</RelativeLayout>
+        android:id="@+id/imageView6"
+        android:src="@drawable/niwakamon"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="-170dp" />
+</FrameLayout>

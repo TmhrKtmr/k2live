@@ -24,11 +24,6 @@ import java.util.TimerTask;
 
 public class MainActivity extends ActionBarActivity {
 
-    private double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
-    private double[] PERFECT_2 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
-    private double[] PERFECT_3 = { 9.0, 18.0, 27.0 };
-    private double[] PERFECT_4 = { 7.0, 14.0, 21.0, 28.0 };
-
     private SoundPool mSoundPool;
     private int mSoundID1;
     private int mSoundID2;
@@ -43,10 +38,22 @@ public class MainActivity extends ActionBarActivity {
     private int count = 0;                    //カウント
     private Handler mHandler = new Handler(); //UI Threadへのpost用ハンドラ
     private int musicTime = 33;//曲の時間
+    public TextView countText2;
+    public TextView countText3;
+    public TextView countText4;
+    private int perfectCount = 0;
+    private int goodCount = 0;
+    private int missCount = 0;
 
     private Animation outAnimation;
     private ImageView judgeImage;
     private ImageView missImage;
+    private ImageView goodImage;
+
+    private double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
+    private double[] PERFECT_2 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
+    private double[] PERFECT_3 = { 9.0, 18.0, 27.0 };
+    private double[] PERFECT_4 = { 7.0, 14.0, 21.0, 28.0 };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,13 +83,19 @@ public class MainActivity extends ActionBarActivity {
 
         //テキストビュー
         this.countText1 = (TextView) findViewById(R.id.count_text1);
+        this.countText2 = (TextView) findViewById(R.id.count_perfect);
+        this.countText3 = (TextView) findViewById(R.id.count_good);
+        this.countText4 = (TextView) findViewById(R.id.count_miss);
 
         //判定表示
         this.judgeImage = (ImageView) findViewById(R.id.judge_image);
+        this.goodImage = (ImageView) findViewById(R.id.good_image);
         this.missImage = (ImageView) findViewById(R.id.miss_image);
+
         findViewById(R.id.judge_image).setVisibility(View.INVISIBLE);
+        findViewById(R.id.good_image).setVisibility(View.INVISIBLE);
         findViewById(R.id.miss_image).setVisibility(View.INVISIBLE);
-        outAnimation = (Animation) AnimationUtils.loadAnimation(this, R.anim.out_animation);
+        outAnimation = AnimationUtils.loadAnimation(this, R.anim.out_animation);
 
     }
 
@@ -100,8 +113,7 @@ public class MainActivity extends ActionBarActivity {
 
         //赤
         ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
-//        TranslateAnimation animation_translate1 = new TranslateAnimation(0, -655, 0, 395);//x原点,x移動先,y原点,y移動先
-        TranslateAnimation animation_translate1 = new TranslateAnimation(0, -560, 0, 330);
+        TranslateAnimation animation_translate1 = new TranslateAnimation(0, -560, 0, 330);//x原点,x移動先,y原点,y移動先
         animation_translate1.setDuration(3000);
         iv1.startAnimation(animation_translate1);
         animation_translate1.setRepeatCount(7);
@@ -145,19 +157,37 @@ public class MainActivity extends ActionBarActivity {
 
                 if (result == TapResult.PERFECT) {
                     judgeImage.setVisibility(View.VISIBLE);
+                    goodImage.setVisibility(View.INVISIBLE);
                     missImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button1).setEnabled(true);
                     mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
                     judgeImage.startAnimation(outAnimation);
+                    perfectCount++;
+                    countText2.setText(String.valueOf(perfectCount));
                 }
                 judgeImage.setVisibility(View.INVISIBLE);
+
+                if (result == TapResult.GOOD) {
+                    goodImage.setVisibility(View.VISIBLE);
+                    judgeImage.setVisibility(View.INVISIBLE);
+                    missImage.setVisibility(View.INVISIBLE);
+                    findViewById(R.id.button1).setEnabled(true);
+                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
+                    goodImage.startAnimation(outAnimation);
+                    goodCount++;
+                    countText3.setText(String.valueOf(goodCount));
+                }
+                goodImage.setVisibility(View.INVISIBLE);
 
                 if (result == TapResult.MISS) {
                     missImage.setVisibility(View.VISIBLE);
                     judgeImage.setVisibility(View.INVISIBLE);
+                    goodImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button1).setEnabled(true);
                     mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
                     missImage.startAnimation(outAnimation);
+                    missCount++;
+                    countText4.setText(String.valueOf(missCount));
                 }
                 missImage.setVisibility(View.INVISIBLE);
             } else {
@@ -174,19 +204,37 @@ public class MainActivity extends ActionBarActivity {
 
                 if (result == TapResult.PERFECT) {
                     judgeImage.setVisibility(View.VISIBLE);
+                    goodImage.setVisibility(View.INVISIBLE);
                     missImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button2).setEnabled(true);
                     mSoundPool.play(mSoundID2, 1.0F, 1.0F, 0, 0, 1.0F);
                     judgeImage.startAnimation(outAnimation);
+                    perfectCount++;
+                    countText2.setText(String.valueOf(perfectCount));
                 }
                 judgeImage.setVisibility(View.INVISIBLE);
+
+                if (result == TapResult.GOOD) {
+                    goodImage.setVisibility(View.VISIBLE);
+                    judgeImage.setVisibility(View.INVISIBLE);
+                    missImage.setVisibility(View.INVISIBLE);
+                    findViewById(R.id.button1).setEnabled(true);
+                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
+                    goodImage.startAnimation(outAnimation);
+                    goodCount++;
+                    countText3.setText(String.valueOf(goodCount));
+                }
+                goodImage.setVisibility(View.INVISIBLE);
 
                 if (result == TapResult.MISS) {
                     missImage.setVisibility(View.VISIBLE);
                     judgeImage.setVisibility(View.INVISIBLE);
+                    goodImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button2).setEnabled(true);
                     mSoundPool.play(mSoundID2, 1.0F, 1.0F, 0, 0, 1.0F);
                     missImage.startAnimation(outAnimation);
+                    missCount++;
+                    countText4.setText(String.valueOf(missCount));
                 }
                 missImage.setVisibility(View.INVISIBLE);
             } else {
@@ -206,15 +254,30 @@ public class MainActivity extends ActionBarActivity {
                     findViewById(R.id.button3).setEnabled(true);
                     mSoundPool.play(mSoundID3, 1.0F, 1.0F, 0, 0, 1.0F);
                     judgeImage.startAnimation(outAnimation);
+                    perfectCount++;
+                    countText2.setText(String.valueOf(perfectCount));
                 }
                 judgeImage.setVisibility(View.INVISIBLE);
 
-                if (result == TapResult.MISS) {
+                if (result == TapResult.GOOD) {
                     missImage.setVisibility(View.VISIBLE);
                     judgeImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button3).setEnabled(true);
                     mSoundPool.play(mSoundID3, 1.0F, 1.0F, 0, 0, 1.0F);
+                    goodImage.startAnimation(outAnimation);
+                    goodCount++;
+                    countText3.setText(String.valueOf(goodCount));
+                }
+                goodImage.setVisibility(View.INVISIBLE);
+                if (result == TapResult.MISS) {
+                    missImage.setVisibility(View.VISIBLE);
+                    judgeImage.setVisibility(View.INVISIBLE);
+                    goodImage.setVisibility(View.INVISIBLE);
+                    findViewById(R.id.button1).setEnabled(true);
+                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
                     missImage.startAnimation(outAnimation);
+                    missCount++;
+                    countText4.setText(String.valueOf(missCount));
                 }
                 missImage.setVisibility(View.INVISIBLE);
             } else {
@@ -234,15 +297,30 @@ public class MainActivity extends ActionBarActivity {
                     findViewById(R.id.button4).setEnabled(true);
                     mSoundPool.play(mSoundID4, 1.0F, 1.0F, 0, 0, 1.0F);
                     judgeImage.startAnimation(outAnimation);
+                    perfectCount++;
+                    countText2.setText(String.valueOf(perfectCount));
                 }
                 judgeImage.setVisibility(View.INVISIBLE);
 
-                if (result == TapResult.MISS) {
+                if (result == TapResult.GOOD) {
                     missImage.setVisibility(View.VISIBLE);
                     judgeImage.setVisibility(View.INVISIBLE);
                     findViewById(R.id.button4).setEnabled(true);
                     mSoundPool.play(mSoundID4, 1.0F, 1.0F, 0, 0, 1.0F);
+                    goodImage.startAnimation(outAnimation);
+                    goodCount++;
+                    countText3.setText(String.valueOf(goodCount));
+                }
+                missImage.setVisibility(View.INVISIBLE);
+                if (result == TapResult.MISS) {
+                    missImage.setVisibility(View.VISIBLE);
+                    judgeImage.setVisibility(View.INVISIBLE);
+                    goodImage.setVisibility(View.INVISIBLE);
+                    findViewById(R.id.button1).setEnabled(true);
+                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
                     missImage.startAnimation(outAnimation);
+                    missCount++;
+                    countText4.setText(String.valueOf(missCount));
                 }
                 missImage.setVisibility(View.INVISIBLE);
             } else {
@@ -254,8 +332,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private TapResult checkTapResult(int count, double[] array) {
-        if (checkTiming(count, array, 0.01)) return TapResult.PERFECT;
-        if (checkTiming(count, array, 1.0)) return TapResult.MISS;
+        if (checkTiming(count, array, 0.1)) return TapResult.PERFECT;
+        if (checkTiming(count, array, 1.0)) return TapResult.GOOD;
+        if (checkTiming(count, array, 2.0)) return TapResult.MISS;
         return TapResult.BLANK;
     }
 
@@ -280,7 +359,7 @@ public class MainActivity extends ActionBarActivity {
                 public void run() {
 
                     //実行間隔分を加算処理
-                    count += 1.0;
+                    count += 1.0d;
                     //画面にカウントを表示
                     countText1.setText(String.valueOf(count));
 
@@ -330,6 +409,7 @@ public class MainActivity extends ActionBarActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            mainTimer.cancel();
                             MainActivity.this.finish();
                         }
                     })

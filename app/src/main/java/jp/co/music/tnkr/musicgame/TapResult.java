@@ -6,6 +6,8 @@ package jp.co.music.tnkr.musicgame;
 public enum TapResult {
     /** パーフェクト */
     PERFECT,
+    /** 良い */
+    GOOD,
     /** 失敗 */
     MISS,
     /** どちらでもない */

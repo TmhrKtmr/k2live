@@ -2,12 +2,13 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <translate
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:duration="90"
-        android:fillAfter="false"
+        android:duration="500"
+        android:fillAfter="true"
         android:fromXDelta="0"
         android:fromYDelta="-5"
         android:toXDelta="0"
         android:toYDelta="5"
         android:repeatMode="reverse"
+        android:repeatCount="infinite"
         />
 </set>
