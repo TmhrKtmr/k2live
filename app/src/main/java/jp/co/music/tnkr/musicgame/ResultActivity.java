@@ -2,6 +2,8 @@ package jp.co.music.tnkr.musicgame;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -11,6 +13,9 @@ public class ResultActivity extends Activity{
     public TextView countText2;
     public TextView countText3;
     public TextView countText4;
+
+    public ImageView ssImage;
+    public ImageView sImage;
 
 
     @Override
@@ -42,6 +47,19 @@ public class ResultActivity extends Activity{
         this.countText4 = (TextView) findViewById(R.id.missText);
         countText4.setText(mMessage);
 
+        this.ssImage = (ImageView) findViewById(R.id.textView1);
+        this.sImage = (ImageView) findViewById(R.id.textView2);
+        findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
+        findViewById(R.id.textView2).setVisibility(View.INVISIBLE);
+
+        if(pValue >= 19&&gValue == 0&&mValue == 0){
+            findViewById(R.id.textView1).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView2).setVisibility(View.INVISIBLE);
+        }
+        if(pValue <= 18||gValue >= 1&&mValue == 0){
+            findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView2).setVisibility(View.VISIBLE);
+        }
 
     }
 }

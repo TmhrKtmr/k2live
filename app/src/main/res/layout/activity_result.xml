@@ -5,17 +5,19 @@
     android:background="@drawable/result_back">
 
     <ImageView
-        android:id="@+id/textView1"
+        android:id="@+id/textView2"
         android:src="@drawable/result_s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="成績"
-        android:textSize="50dp"
         android:layout_gravity="center"
-        android:layout_above="@+id/button"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="30dp" />
+    <ImageView
+        android:id="@+id/textView1"
+        android:src="@drawable/ss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp" />
 
     <ImageView
         android:src="@drawable/piano08"
@@ -30,7 +32,6 @@
         android:src="@drawable/ok"
         android:layout_width="105dp"
         android:layout_height="54dp"
-        android:text="戻る"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

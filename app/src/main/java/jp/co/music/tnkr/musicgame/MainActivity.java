@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity {
     private Timer mainTimer;                 //タイマー用
     private MainTimerTask mainTimerTask;     //タイマタスククラス
     private TextView countText1;             //テキストビュー
-    private int count = 0;                    //カウント
+    private double count = 0.0;                    //カウント
     private Handler mHandler = new Handler(); //UI Threadへのpost用ハンドラ
     private int musicTime = 33;//曲の時間
     //判定カウント
@@ -51,10 +51,10 @@ public class MainActivity extends ActionBarActivity {
     private ImageView missImage;
     private ImageView goodImage;
 
-    private double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
-    private double[] PERFECT_2 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
-    private double[] PERFECT_3 = { 9.0, 18.0, 27.0 };
-    private double[] PERFECT_4 = { 7.0, 14.0, 21.0, 28.0 };
+    public double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
+    public double[] PERFECT_2 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
+    public double[] PERFECT_3 = { 9.0, 18.0, 27.0 };
+    public double[] PERFECT_4 = { 7.0, 14.0, 21.0, 28.0 };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,34 +114,40 @@ public class MainActivity extends ActionBarActivity {
 
         //赤
         ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
-        TranslateAnimation animation_translate1 = new TranslateAnimation(0, -560, 0, 330);//x原点,x移動先,y原点,y移動先
-        animation_translate1.setDuration(3000);
-        iv1.startAnimation(animation_translate1);
-        animation_translate1.setRepeatCount(7);
+        TranslateAnimation translate1 = new TranslateAnimation(0, -560, 0, 190);//x原点,x移動先,y原点,y移動先
+//        animation_translate1.setDuration(3000);
+//        iv1.startAnimation(animation_translate1);
+//        animation_translate1.setRepeatCount(7);
+        translate1.setDuration(3000);
+        iv1.startAnimation(translate1);
+        translate1.setRepeatCount(2);
+        translate1.setDuration(2000);
+        iv1.startAnimation(translate1);
+        translate1.setRepeatCount(4);
 
         //緑
         ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
-        TranslateAnimation animation_translate2 = new TranslateAnimation(0, -460, 0, 450);
-        animation_translate2.setStartOffset(2000);
-        animation_translate2.setDuration(3000);
-        iv2.startAnimation(animation_translate2);
-        animation_translate2.setRepeatCount(4);
+        TranslateAnimation translate2 = new TranslateAnimation(0, -460, 0, 450);
+        translate2.setStartOffset(2000);
+        translate2.setDuration(3000);
+        iv2.startAnimation(translate2);
+        translate2.setRepeatCount(4);
 
         //青
         ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
-        TranslateAnimation animation_translate3 = new TranslateAnimation(0, 460, 0, 450);
-        animation_translate3.setStartOffset(6000);
-        animation_translate3.setDuration(3000);
-        iv3.startAnimation(animation_translate3);
-        animation_translate3.setRepeatCount(2);
+        TranslateAnimation translate3 = new TranslateAnimation(0, 460, 0, 450);
+        translate3.setStartOffset(6000);
+        translate3.setDuration(3000);
+        iv3.startAnimation(translate3);
+        translate3.setRepeatCount(2);
 
         //黄
         ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
-        TranslateAnimation animation_translate4 = new TranslateAnimation(0, 560, 0, 330);
-        animation_translate4.setStartOffset(4000);
-        animation_translate4.setDuration(3000);
-        iv4.startAnimation(animation_translate4);
-        animation_translate4.setRepeatCount(3);
+        TranslateAnimation translate4 = new TranslateAnimation(0, 560, 0, 190);
+        translate4.setStartOffset(4000);
+        translate4.setDuration(3000);
+        iv4.startAnimation(translate4);
+        translate4.setRepeatCount(3);
 
         //タイマースケジュール設定＆開始
         this.mainTimer.schedule(mainTimerTask, 0, 1000);//押して開始するまで、カウントの間隔
@@ -332,14 +338,14 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    private TapResult checkTapResult(int count, double[] array) {
+    private TapResult checkTapResult(double count, double[] array) {
         if (checkTiming(count, array, 0.1)) return TapResult.PERFECT;
         if (checkTiming(count, array, 1.0)) return TapResult.GOOD;
         if (checkTiming(count, array, 2.0)) return TapResult.MISS;
         return TapResult.BLANK;
     }
 
-    private boolean checkTiming(int count, double[] array, double dx) {
+    private boolean checkTiming(double count, double[] array, double dx) {
         for (double d : array) {
             if (d - dx <= count && count <= d + dx) {
                 return true;
