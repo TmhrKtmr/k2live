@@ -38,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
     private int count = 0;                    //カウント
     private Handler mHandler = new Handler(); //UI Threadへのpost用ハンドラ
     private int musicTime = 33;//曲の時間
+    //判定カウント
     public TextView countText2;
     public TextView countText3;
     public TextView countText4;
@@ -363,6 +364,10 @@ public class MainActivity extends ActionBarActivity {
                     //画面にカウントを表示
                     countText1.setText(String.valueOf(count));
 
+                    if (missCount >=5){
+                        gameOver();
+                    }
+
                     musicTime--;
                     if (musicTime <= 0) {
                         musicEnd();
@@ -371,24 +376,25 @@ public class MainActivity extends ActionBarActivity {
             });
         }
     }
+
+    public void gameOver(){
+        mainTimer.cancel();
+        mainTimer = null;
+        Intent intent = new Intent(this,GameOverActivity.class);
+        startActivity(intent);
+        MainActivity.this.finish();
+    }
+
     private void musicEnd() {
         mainTimer.cancel();
         mainTimer = null;
         Intent intent = new Intent(this,ResultActivity.class);
+        intent.putExtra("pCount", perfectCount);
+        intent.putExtra("gCount", goodCount);
+        intent.putExtra("mCount", missCount);
         startActivity(intent);
         MainActivity.this.finish();
-
     }
-//    @Override
-//    protected void onPause(){
-//        super.onPause();
-//        if (gameBgm.isPlaying()){
-//            mSoundPool.release();
-//            gameBgm.pause();
-//            gameBgm.release();
-//            Toast.makeText(MainActivity.this, "ゲームを中断しました", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     @Override
     protected void onDestroy() {
@@ -448,53 +454,3 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-
-//        AnimationSet set = new AnimationSet(true);
-//
-//        AlphaAnimation alpha = new AlphaAnimation(0.1f, 1f);//透明度(開始透明度、終了透明度)
-//        RotateAnimation rotate = new RotateAnimation(0, 720, 0, 0);//回転(開始角度、回転角度、回転中心X軸、回転中心Y軸)
-//        ScaleAnimation scale = new ScaleAnimation(0.1f, 1, 0.1f, 1);//サイズ()
-//        TranslateAnimation translate = new TranslateAnimation(0, 0, -200, 0);//移動()
-//
-//        set.addAnimation(alpha);
-//        set.addAnimation(rotate);
-//        set.addAnimation(scale);
-//        set.addAnimation(translate);
-//        set.setDuration(2500);
-//        v.startAnimation(set);
-
-//赤
-//        ObjectAnimator animX = ObjectAnimator.ofFloat(iv1, "x", 30f);
-//        ObjectAnimator animY = ObjectAnimator.ofFloat(iv1, "y", 320f);
-//        AnimatorSet animSetXY = new AnimatorSet();
-//        animSetXY.playTogether(animX, animY);
-//        animSetXY.setDuration(4000);
-//        animSetXY.start();
-
-//緑
-//        ObjectAnimator animX2 = ObjectAnimator.ofFloat(iv2, "x", 130f);
-//        ObjectAnimator animY2 = ObjectAnimator.ofFloat(iv2, "y", 440f);
-//        AnimatorSet animSetXY2 = new AnimatorSet();
-//        animSetXY2.playTogether(animX2, animY2);
-//        animSetXY2.setDuration(3000);
-//        animX2.setRepeatCount(2);
-//        animY2.setRepeatCount(2);
-//        animSetXY2.start();
-
-//青
-//        ObjectAnimator animX3 = ObjectAnimator.ofFloat(iv3, "x", 1050f);
-//        ObjectAnimator animY3 = ObjectAnimator.ofFloat(iv3, "y", 440f);
-//        AnimatorSet animSetXY3 = new AnimatorSet();
-//        animSetXY3.playTogether(animX3, animY3);
-//        animSetXY3.setDuration(3000);
-//        animSetXY3.start();
-
-//黄
-//        ObjectAnimator animX4 = ObjectAnimator.ofFloat(iv4, "x", 1150f);
-//        ObjectAnimator animY4 = ObjectAnimator.ofFloat(iv4, "y", 320f);
-//        AnimatorSet animSetXY4 = new AnimatorSet();
-//        animSetXY4.playTogether(animX4, animY4);
-//        animSetXY4.setDuration(3000);
-//        animSetXY4.start();
-
