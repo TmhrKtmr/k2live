@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
     private ImageView missImage;
     private ImageView goodImage;
 
-    public double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
+    public double[] PERFECT_1 = {3, 6, 9, 12, 15, 18, 21, 24};
     public double[] PERFECT_2 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
     public double[] PERFECT_3 = { 9.0, 18.0, 27.0 };
     public double[] PERFECT_4 = { 7.0, 14.0, 21.0, 28.0 };
@@ -115,15 +115,9 @@ public class MainActivity extends ActionBarActivity {
         //赤
         ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
         TranslateAnimation translate1 = new TranslateAnimation(0, -560, 0, 190);//x原点,x移動先,y原点,y移動先
-//        animation_translate1.setDuration(3000);
-//        iv1.startAnimation(animation_translate1);
-//        animation_translate1.setRepeatCount(7);
         translate1.setDuration(3000);
         iv1.startAnimation(translate1);
-        translate1.setRepeatCount(2);
-        translate1.setDuration(2000);
-        iv1.startAnimation(translate1);
-        translate1.setRepeatCount(4);
+        translate1.setRepeatCount(7);
 
         //緑
         ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
@@ -155,187 +149,59 @@ public class MainActivity extends ActionBarActivity {
 
     public void padTouch(View v) {
 
-        //int[] buttons  = {R.id.button1, R.id.button2, R.id.button3, R.id.button4 };
-        //int[] perfects = { PERFECT_1,  PERFECT_2,  PERFECT_3,  PERFECT_4 };
+        int[] buttons  = {R.id.button1, R.id.button2, R.id.button3, R.id.button4 };
+        double[][] perfects = new double[][]{ PERFECT_1,  PERFECT_2,  PERFECT_3,  PERFECT_4 };
 
-        if (v.getId() == R.id.button1) {
-            TapResult result = checkTapResult(count, PERFECT_1);
-            if (judgeImage.getVisibility() == View.INVISIBLE) {
+        for(int i=0; i< buttons.length; i++) {//buttonsとperfectsの数が同じなので
+            if (v.getId() == buttons[i]) {
+                TapResult result = checkTapResult(count, perfects[i]);
+                if (judgeImage.getVisibility() == View.INVISIBLE) {
 
-                if (result == TapResult.PERFECT) {
-                    judgeImage.setVisibility(View.VISIBLE);
+                    if (result == TapResult.PERFECT) {
+                        judgeImage.setVisibility(View.VISIBLE);
+                        goodImage.setVisibility(View.INVISIBLE);
+                        missImage.setVisibility(View.INVISIBLE);
+                        findViewById(buttons[i]).setEnabled(true);
+                        mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
+                        judgeImage.startAnimation(outAnimation);
+                        perfectCount++;
+                        countText2.setText(String.valueOf(perfectCount));
+                    }
+                    judgeImage.setVisibility(View.INVISIBLE);
+
+                    if (result == TapResult.GOOD) {
+                        goodImage.setVisibility(View.VISIBLE);
+                        judgeImage.setVisibility(View.INVISIBLE);
+                        missImage.setVisibility(View.INVISIBLE);
+                        findViewById(buttons[i]).setEnabled(true);
+                        mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
+                        goodImage.startAnimation(outAnimation);
+                        goodCount++;
+                        countText3.setText(String.valueOf(goodCount));
+                    }
                     goodImage.setVisibility(View.INVISIBLE);
-                    missImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button1).setEnabled(true);
-                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
-                    judgeImage.startAnimation(outAnimation);
-                    perfectCount++;
-                    countText2.setText(String.valueOf(perfectCount));
-                }
-                judgeImage.setVisibility(View.INVISIBLE);
 
-                if (result == TapResult.GOOD) {
-                    goodImage.setVisibility(View.VISIBLE);
+                    if (result == TapResult.MISS) {
+                        missImage.setVisibility(View.VISIBLE);
+                        judgeImage.setVisibility(View.INVISIBLE);
+                        goodImage.setVisibility(View.INVISIBLE);
+                        findViewById(buttons[i]).setEnabled(true);
+                        mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
+                        missImage.startAnimation(outAnimation);
+                        missCount++;
+                        countText4.setText(String.valueOf(missCount));
+                    }
+                    missImage.setVisibility(View.INVISIBLE);
+                } else {
+                    findViewById(buttons[i]).setEnabled(false);
                     judgeImage.setVisibility(View.INVISIBLE);
                     missImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button1).setEnabled(true);
-                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
-                    goodImage.startAnimation(outAnimation);
-                    goodCount++;
-                    countText3.setText(String.valueOf(goodCount));
                 }
-                goodImage.setVisibility(View.INVISIBLE);
-
-                if (result == TapResult.MISS) {
-                    missImage.setVisibility(View.VISIBLE);
-                    judgeImage.setVisibility(View.INVISIBLE);
-                    goodImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button1).setEnabled(true);
-                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
-                    missImage.startAnimation(outAnimation);
-                    missCount++;
-                    countText4.setText(String.valueOf(missCount));
-                }
-                missImage.setVisibility(View.INVISIBLE);
-            } else {
-                findViewById(R.id.button1).setEnabled(false);
-                judgeImage.setVisibility(View.INVISIBLE);
-                missImage.setVisibility(View.INVISIBLE);
             }
         }
+
         //Log.i("count",count+"");
 
-        if (v.getId() == R.id.button2) {
-            TapResult result = checkTapResult(count, PERFECT_2);
-            if (judgeImage.getVisibility() == View.INVISIBLE) {
-
-                if (result == TapResult.PERFECT) {
-                    judgeImage.setVisibility(View.VISIBLE);
-                    goodImage.setVisibility(View.INVISIBLE);
-                    missImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button2).setEnabled(true);
-                    mSoundPool.play(mSoundID2, 1.0F, 1.0F, 0, 0, 1.0F);
-                    judgeImage.startAnimation(outAnimation);
-                    perfectCount++;
-                    countText2.setText(String.valueOf(perfectCount));
-                }
-                judgeImage.setVisibility(View.INVISIBLE);
-
-                if (result == TapResult.GOOD) {
-                    goodImage.setVisibility(View.VISIBLE);
-                    judgeImage.setVisibility(View.INVISIBLE);
-                    missImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button1).setEnabled(true);
-                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
-                    goodImage.startAnimation(outAnimation);
-                    goodCount++;
-                    countText3.setText(String.valueOf(goodCount));
-                }
-                goodImage.setVisibility(View.INVISIBLE);
-
-                if (result == TapResult.MISS) {
-                    missImage.setVisibility(View.VISIBLE);
-                    judgeImage.setVisibility(View.INVISIBLE);
-                    goodImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button2).setEnabled(true);
-                    mSoundPool.play(mSoundID2, 1.0F, 1.0F, 0, 0, 1.0F);
-                    missImage.startAnimation(outAnimation);
-                    missCount++;
-                    countText4.setText(String.valueOf(missCount));
-                }
-                missImage.setVisibility(View.INVISIBLE);
-            } else {
-                findViewById(R.id.button2).setEnabled(false);
-                judgeImage.setVisibility(View.INVISIBLE);
-                missImage.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        if (v.getId() == R.id.button3) {
-            TapResult result = checkTapResult(count, PERFECT_3);
-            if (judgeImage.getVisibility() == View.INVISIBLE) {
-
-                if (result == TapResult.PERFECT) {
-                    judgeImage.setVisibility(View.VISIBLE);
-                    missImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button3).setEnabled(true);
-                    mSoundPool.play(mSoundID3, 1.0F, 1.0F, 0, 0, 1.0F);
-                    judgeImage.startAnimation(outAnimation);
-                    perfectCount++;
-                    countText2.setText(String.valueOf(perfectCount));
-                }
-                judgeImage.setVisibility(View.INVISIBLE);
-
-                if (result == TapResult.GOOD) {
-                    missImage.setVisibility(View.VISIBLE);
-                    judgeImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button3).setEnabled(true);
-                    mSoundPool.play(mSoundID3, 1.0F, 1.0F, 0, 0, 1.0F);
-                    goodImage.startAnimation(outAnimation);
-                    goodCount++;
-                    countText3.setText(String.valueOf(goodCount));
-                }
-                goodImage.setVisibility(View.INVISIBLE);
-                if (result == TapResult.MISS) {
-                    missImage.setVisibility(View.VISIBLE);
-                    judgeImage.setVisibility(View.INVISIBLE);
-                    goodImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button1).setEnabled(true);
-                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
-                    missImage.startAnimation(outAnimation);
-                    missCount++;
-                    countText4.setText(String.valueOf(missCount));
-                }
-                missImage.setVisibility(View.INVISIBLE);
-            } else {
-                findViewById(R.id.button3).setEnabled(false);
-                judgeImage.setVisibility(View.INVISIBLE);
-                missImage.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        if (v.getId() == R.id.button4) {
-            TapResult result = checkTapResult(count, PERFECT_4);
-            if (judgeImage.getVisibility() == View.INVISIBLE) {
-
-                if (result == TapResult.PERFECT) {
-                    judgeImage.setVisibility(View.VISIBLE);
-                    missImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button4).setEnabled(true);
-                    mSoundPool.play(mSoundID4, 1.0F, 1.0F, 0, 0, 1.0F);
-                    judgeImage.startAnimation(outAnimation);
-                    perfectCount++;
-                    countText2.setText(String.valueOf(perfectCount));
-                }
-                judgeImage.setVisibility(View.INVISIBLE);
-
-                if (result == TapResult.GOOD) {
-                    missImage.setVisibility(View.VISIBLE);
-                    judgeImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button4).setEnabled(true);
-                    mSoundPool.play(mSoundID4, 1.0F, 1.0F, 0, 0, 1.0F);
-                    goodImage.startAnimation(outAnimation);
-                    goodCount++;
-                    countText3.setText(String.valueOf(goodCount));
-                }
-                missImage.setVisibility(View.INVISIBLE);
-                if (result == TapResult.MISS) {
-                    missImage.setVisibility(View.VISIBLE);
-                    judgeImage.setVisibility(View.INVISIBLE);
-                    goodImage.setVisibility(View.INVISIBLE);
-                    findViewById(R.id.button1).setEnabled(true);
-                    mSoundPool.play(mSoundID1, 1.0F, 1.0F, 0, 0, 1.0F);
-                    missImage.startAnimation(outAnimation);
-                    missCount++;
-                    countText4.setText(String.valueOf(missCount));
-                }
-                missImage.setVisibility(View.INVISIBLE);
-            } else {
-                findViewById(R.id.button4).setEnabled(false);
-                judgeImage.setVisibility(View.INVISIBLE);
-                missImage.setVisibility(View.INVISIBLE);
-            }
-        }
     }
 
     private TapResult checkTapResult(double count, double[] array) {
