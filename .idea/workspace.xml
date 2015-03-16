@@ -45,8 +45,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8a48d9d-4ec8-40f6-9b99-0d63be1bc0c7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MusicGame.iws" />
@@ -1327,7 +1325,11 @@
       <created>1426438400525</created>
       <updated>1426438400525</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="タッチ関係、タイミング関係のコードを削減他">
+      <created>1426525275733</created>
+      <updated>1426525275733</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1419,7 +1421,8 @@
     <MESSAGE value="スタート画面、リザルト画面、アニメーション追加他" />
     <MESSAGE value="ゲームオーバー画面追加他" />
     <MESSAGE value="SS判定追加他" />
-    <option name="LAST_COMMIT_MESSAGE" value="SS判定追加他" />
+    <MESSAGE value="タッチ関係、タイミング関係のコードを削減他" />
+    <option name="LAST_COMMIT_MESSAGE" value="タッチ関係、タイミング関係のコードを削減他" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
