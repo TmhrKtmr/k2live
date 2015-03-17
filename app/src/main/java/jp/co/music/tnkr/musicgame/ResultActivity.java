@@ -9,14 +9,15 @@ import android.widget.TextView;
 /**
  * Created by yukumo3621 on 2015/02/03.
  */
-public class ResultActivity extends Activity{
+public class ResultActivity extends Activity {
     public TextView countText2;
     public TextView countText3;
     public TextView countText4;
 
     public ImageView ssImage;
     public ImageView sImage;
-
+    public ImageView aImage;
+    public ImageView bImage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,17 +29,17 @@ public class ResultActivity extends Activity{
 
         Bundle extras;
         extras = getIntent().getExtras();
-        if(extras != null) {
+        if (extras != null) {
             pValue = extras.getInt("pCount");
             gValue = extras.getInt("gCount");
             mValue = extras.getInt("mCount");
         }
         String pMessage;
-        pMessage =  Integer.toString(pValue);
+        pMessage = Integer.toString(pValue);
         String gMessage;
-        gMessage =  Integer.toString(gValue);
+        gMessage = Integer.toString(gValue);
         String mMessage;
-        mMessage =  Integer.toString(mValue);
+        mMessage = Integer.toString(mValue);
 
         this.countText2 = (TextView) findViewById(R.id.perfectText);
         countText2.setText(pMessage);
@@ -49,17 +50,37 @@ public class ResultActivity extends Activity{
 
         this.ssImage = (ImageView) findViewById(R.id.textView1);
         this.sImage = (ImageView) findViewById(R.id.textView2);
+        this.aImage = (ImageView) findViewById(R.id.textView3);
+        this.bImage = (ImageView) findViewById(R.id.textView4);
+
         findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
         findViewById(R.id.textView2).setVisibility(View.INVISIBLE);
+        findViewById(R.id.textView3).setVisibility(View.INVISIBLE);
+        findViewById(R.id.textView4).setVisibility(View.INVISIBLE);
 
-        if(pValue >= 19&&gValue == 0&&mValue == 0){
+        if (pValue >= 20 && gValue == 0 && mValue == 0) {
             findViewById(R.id.textView1).setVisibility(View.VISIBLE);
             findViewById(R.id.textView2).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView3).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView4).setVisibility(View.INVISIBLE);
         }
-        if(pValue <= 18||gValue >= 1&&mValue == 0){
+        else if (pValue >= 18 && gValue <= 1 && mValue == 0) {
             findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView2).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView3).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView4).setVisibility(View.INVISIBLE);
         }
-
+        else if (pValue >= 16 && gValue <= 2 && mValue == 0) {
+            findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView2).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView3).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView4).setVisibility(View.INVISIBLE);
+        }
+        else if (pValue <= 15 || gValue >= 3 || mValue >= 1){
+            findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView2).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView3).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView4).setVisibility(View.VISIBLE);
+        }
     }
 }
