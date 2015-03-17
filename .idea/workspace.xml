@@ -45,10 +45,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8a48d9d-4ec8-40f6-9b99-0d63be1bc0c7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/a.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/b.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/ResultActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/ResultActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_result.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_result.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MusicGame.iws" />
@@ -1327,7 +1323,11 @@
       <created>1426525275733</created>
       <updated>1426525275733</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="A,B判定追加他">
+      <created>1426604135859</created>
+      <updated>1426604135859</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1420,7 +1420,8 @@
     <MESSAGE value="ゲームオーバー画面追加他" />
     <MESSAGE value="SS判定追加他" />
     <MESSAGE value="タッチ関係、タイミング関係のコードを削減他" />
-    <option name="LAST_COMMIT_MESSAGE" value="タッチ関係、タイミング関係のコードを削減他" />
+    <MESSAGE value="A,B判定追加他" />
+    <option name="LAST_COMMIT_MESSAGE" value="A,B判定追加他" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
