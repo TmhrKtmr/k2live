@@ -3,16 +3,19 @@ package jp.co.music.tnkr.musicgame;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
@@ -51,10 +54,10 @@ public class MainActivity extends ActionBarActivity {
     private ImageView missImage;
     private ImageView goodImage;
 
-    public double[] PERFECT_1 = {3, 6, 9, 12, 15, 18, 21, 24};
-    public double[] PERFECT_2 = { 5.0, 10.0, 15.0, 20.0, 25.0 };
-    public double[] PERFECT_3 = { 9.0, 18.0, 27.0 };
-    public double[] PERFECT_4 = { 7.0, 14.0, 21.0, 28.0 };
+    public double[] PERFECT_1 = {3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0};
+    public double[] PERFECT_2 = {5.0, 10.0, 15.0, 20.0, 25.0};
+    public double[] PERFECT_3 = {9.0, 18.0, 27.0};
+    public double[] PERFECT_4 = {7.0, 14.0, 21.0, 28.0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.judge_image).setVisibility(View.INVISIBLE);
         findViewById(R.id.good_image).setVisibility(View.INVISIBLE);
         findViewById(R.id.miss_image).setVisibility(View.INVISIBLE);
-        outAnimation = AnimationUtils.loadAnimation(this, R.anim.out_animation);
+        outAnimation = AnimationUtils.loadAnimation(this, R.anim.judgement);
 
     }
 
@@ -112,47 +115,88 @@ public class MainActivity extends ActionBarActivity {
         gameBgm.seekTo(0); // 再生位置を0ミリ秒に指定
         gameBgm.start(); // 再生開始
 
-        //赤
-        ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
-        TranslateAnimation translate1 = new TranslateAnimation(0, -560, 0, 190);//x原点,x移動先,y原点,y移動先
-        translate1.setDuration(3000);
-        iv1.startAnimation(translate1);
-        translate1.setRepeatCount(7);
+        // 画面サイズ取得
+        WindowManager wm = getWindowManager();
+        Display disp = wm.getDefaultDisplay();
+        Point size = new Point();
+        disp.getSize(size);
 
-        //緑
-        ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
-        TranslateAnimation translate2 = new TranslateAnimation(0, -460, 0, 450);
-        translate2.setStartOffset(2000);
-        translate2.setDuration(3000);
-        iv2.startAnimation(translate2);
-        translate2.setRepeatCount(4);
+        if (size.x == 1280 && size.y == 720) {
+            //赤
+            ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
+            TranslateAnimation translate1 = new TranslateAnimation(0, -560, 0, 190);//x原点,x移動先,y原点,y移動先
+            translate1.setDuration(3000);
+            iv1.startAnimation(translate1);
+            translate1.setRepeatCount(7);
 
-        //青
-        ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
-        TranslateAnimation translate3 = new TranslateAnimation(0, 460, 0, 450);
-        translate3.setStartOffset(6000);
-        translate3.setDuration(3000);
-        iv3.startAnimation(translate3);
-        translate3.setRepeatCount(2);
+            //緑
+            ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
+            TranslateAnimation translate2 = new TranslateAnimation(0, -460, 0, 450);
+            translate2.setStartOffset(2000);
+            translate2.setDuration(3000);
+            iv2.startAnimation(translate2);
+            translate2.setRepeatCount(4);
 
-        //黄
-        ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
-        TranslateAnimation translate4 = new TranslateAnimation(0, 560, 0, 190);
-        translate4.setStartOffset(4000);
-        translate4.setDuration(3000);
-        iv4.startAnimation(translate4);
-        translate4.setRepeatCount(3);
+            //青
+            ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
+            TranslateAnimation translate3 = new TranslateAnimation(0, 460, 0, 450);
+            translate3.setStartOffset(6000);
+            translate3.setDuration(3000);
+            iv3.startAnimation(translate3);
+            translate3.setRepeatCount(2);
 
+            //黄
+            ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
+            TranslateAnimation translate4 = new TranslateAnimation(0, 560, 0, 190);
+            translate4.setStartOffset(4000);
+            translate4.setDuration(3000);
+            iv4.startAnimation(translate4);
+            translate4.setRepeatCount(3);
+        }
+
+        //別サイズの機種
+        if (size.x == 1920 && size.y == 1080) {
+            //赤
+            ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
+            TranslateAnimation translate1 = new TranslateAnimation(0, -840, 0, 285);//x原点,x移動先,y原点,y移動先
+            translate1.setDuration(3000);
+            iv1.startAnimation(translate1);
+            translate1.setRepeatCount(7);
+
+            //緑
+            ImageView iv2 = (ImageView) findViewById(R.id.imageView2);
+            TranslateAnimation translate2 = new TranslateAnimation(0, -690, 0, 675);
+            translate2.setStartOffset(2000);
+            translate2.setDuration(3000);
+            iv2.startAnimation(translate2);
+            translate2.setRepeatCount(4);
+
+            //青
+            ImageView iv3 = (ImageView) findViewById(R.id.imageView3);
+            TranslateAnimation translate3 = new TranslateAnimation(0, 690, 0, 675);
+            translate3.setStartOffset(6000);
+            translate3.setDuration(3000);
+            iv3.startAnimation(translate3);
+            translate3.setRepeatCount(2);
+
+            //黄
+            ImageView iv4 = (ImageView) findViewById(R.id.imageView4);
+            TranslateAnimation translate4 = new TranslateAnimation(0, 840, 0, 285);
+            translate4.setStartOffset(4000);
+            translate4.setDuration(3000);
+            iv4.startAnimation(translate4);
+            translate4.setRepeatCount(3);
+        }
         //タイマースケジュール設定＆開始
         this.mainTimer.schedule(mainTimerTask, 0, 1000);//押して開始するまで、カウントの間隔
     }
 
     public void padTouch(View v) {
 
-        int[] buttons  = {R.id.button1, R.id.button2, R.id.button3, R.id.button4 };
-        double[][] perfects = new double[][]{ PERFECT_1,  PERFECT_2,  PERFECT_3,  PERFECT_4 };
+        int[] buttons = {R.id.button1, R.id.button2, R.id.button3, R.id.button4};
+        double[][] perfects = new double[][]{PERFECT_1, PERFECT_2, PERFECT_3, PERFECT_4};
 
-        for(int i=0; i< buttons.length; i++) {//buttonsとperfectsの数が同じなので
+        for (int i = 0; i < buttons.length; i++) {//buttonsとperfectsの数が同じなので
             if (v.getId() == buttons[i]) {
                 TapResult result = checkTapResult(count, perfects[i]);
                 if (judgeImage.getVisibility() == View.INVISIBLE) {
@@ -199,9 +243,6 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         }
-
-        //Log.i("count",count+"");
-
     }
 
     private TapResult checkTapResult(double count, double[] array) {
@@ -230,16 +271,14 @@ public class MainActivity extends ActionBarActivity {
             //ここに定周期で実行したい処理を記述します
             mHandler.post(new Runnable() {
                 public void run() {
-
                     //実行間隔分を加算処理
                     count += 1.0d;
                     //画面にカウントを表示
                     countText1.setText(String.valueOf(count));
 
-                    if (missCount >=5){
+                    if (missCount >= 5) {
                         gameOver();
                     }
-
                     musicTime--;
                     if (musicTime <= 0) {
                         musicEnd();
@@ -249,10 +288,10 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public void gameOver(){
+    public void gameOver() {
         mainTimer.cancel();
         mainTimer = null;
-        Intent intent = new Intent(this,GameOverActivity.class);
+        Intent intent = new Intent(this, GameOverActivity.class);
         startActivity(intent);
         MainActivity.this.finish();
     }
@@ -260,7 +299,7 @@ public class MainActivity extends ActionBarActivity {
     private void musicEnd() {
         mainTimer.cancel();
         mainTimer = null;
-        Intent intent = new Intent(this,ResultActivity.class);
+        Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("pCount", perfectCount);
         intent.putExtra("gCount", goodCount);
         intent.putExtra("mCount", missCount);
@@ -281,9 +320,9 @@ public class MainActivity extends ActionBarActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             new AlertDialog.Builder(this)
-                    .setTitle("アプリケーションの終了")
+                    .setTitle("kitamuLive")
                     .setMessage("アプリケーションを終了してよろしいですか？")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("終了", new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -291,7 +330,7 @@ public class MainActivity extends ActionBarActivity {
                             MainActivity.this.finish();
                         }
                     })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -304,6 +343,7 @@ public class MainActivity extends ActionBarActivity {
         }
         return false;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -322,7 +362,6 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

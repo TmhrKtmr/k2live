@@ -5,9 +5,9 @@
         android:duration="500"
         android:fillAfter="true"
         android:fromXDelta="0"
-        android:fromYDelta="-5"
+        android:fromYDelta="-10"
         android:toXDelta="0"
-        android:toYDelta="5"
+        android:toYDelta="10"
         android:repeatMode="reverse"
         android:repeatCount="infinite"
         />
