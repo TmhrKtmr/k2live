@@ -54,13 +54,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8a48d9d-4ec8-40f6-9b99-0d63be1bc0c7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/raw/gamestart.mp3" />
-      <change type="DELETED" beforePath="C:\Users\yukumo3621\AndroidStudioProjects\MusicGame\app\src\main\res\drawable\droid.png" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\yukumo3621\AndroidStudioProjects\MusicGame\app\src\main\res\anim\bound.xml" afterPath="$PROJECT_DIR$/app/src/main/res/anim/updown.xml" />
-      <change type="MOVED" beforePath="C:\Users\yukumo3621\AndroidStudioProjects\MusicGame\app\src\main\res\anim\out_animation.xml" afterPath="$PROJECT_DIR$/app/src/main/res/anim/judgement.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/TitleActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/TitleActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MusicGame.iws" />
@@ -102,7 +95,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.92" vertical-offset="5491" max-vertical-offset="5916">
+            <state vertical-scroll-proportion="0.9505882" vertical-offset="446" max-vertical-offset="5916">
               <caret line="73" column="68" selection-start-line="73" selection-start-column="68" selection-end-line="73" selection-end-column="68" />
               <folding>
                 <element signature="e#12292#12599#0" expanded="true" />
@@ -1375,7 +1368,11 @@
       <created>1426604135859</created>
       <updated>1426604135859</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="他機種(１つ)画面サイズ対応他">
+      <created>1427546827080</created>
+      <updated>1427546827080</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1469,7 +1466,8 @@
     <MESSAGE value="SS判定追加他" />
     <MESSAGE value="タッチ関係、タイミング関係のコードを削減他" />
     <MESSAGE value="A,B判定追加他" />
-    <option name="LAST_COMMIT_MESSAGE" value="A,B判定追加他" />
+    <MESSAGE value="他機種(１つ)画面サイズ対応他" />
+    <option name="LAST_COMMIT_MESSAGE" value="他機種(１つ)画面サイズ対応他" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1888,7 +1886,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/jp/co/music/tnkr/musicgame/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.92" vertical-offset="5491" max-vertical-offset="5916">
+        <state vertical-scroll-proportion="0.9505882" vertical-offset="446" max-vertical-offset="5916">
           <caret line="73" column="68" selection-start-line="73" selection-start-column="68" selection-end-line="73" selection-end-column="68" />
           <folding>
             <element signature="e#12292#12599#0" expanded="true" />
