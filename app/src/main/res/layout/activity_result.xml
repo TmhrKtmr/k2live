@@ -5,28 +5,28 @@
     android:background="@drawable/result_back">
 
     <ImageView
-        android:id="@+id/textView1"
+        android:id="@+id/judgeView1"
         android:src="@drawable/ss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp" />
     <ImageView
-        android:id="@+id/textView2"
+        android:id="@+id/judgeView2"
         android:src="@drawable/result_s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp" />
     <ImageView
-        android:id="@+id/textView3"
+        android:id="@+id/judgeView3"
         android:src="@drawable/a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp" />
     <ImageView
-        android:id="@+id/textView4"
+        android:id="@+id/judgeView4"
         android:src="@drawable/b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

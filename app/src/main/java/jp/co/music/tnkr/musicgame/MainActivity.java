@@ -121,10 +121,11 @@ public class MainActivity extends ActionBarActivity {
         Point size = new Point();
         disp.getSize(size);
 
+        //基準画面サイズ
         if (size.x == 1280 && size.y == 720) {
             //赤
             ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
-            TranslateAnimation translate1 = new TranslateAnimation(0, -560, 0, 190);//x原点,x移動先,y原点,y移動先
+            TranslateAnimation translate1 = new TranslateAnimation(0, -560, 0, 190);//x原点,x移動先,y原点,y移動先(基準値)
             translate1.setDuration(3000);
             iv1.startAnimation(translate1);
             translate1.setRepeatCount(7);
@@ -153,12 +154,18 @@ public class MainActivity extends ActionBarActivity {
             iv4.startAnimation(translate4);
             translate4.setRepeatCount(3);
         }
-
-        //別サイズの機種
+        /**
+         * この上下の画面サイズ以外は正常に動作しません
+         * 別サイズでプレイする場合は、
+         * タイトル画面で表示されたサイズに応じTranslateAnimationの数値を変更
+         * 別サイズ÷基準サイズ×TranslateAnimation値
+         * (今後数値に変数を使用してコードを削減予定)
+         */
+        //別サイズの機種(長辺・短辺ともに基準×1.5の画面サイズ)
         if (size.x == 1920 && size.y == 1080) {
             //赤
             ImageView iv1 = (ImageView) findViewById(R.id.imageView1);
-            TranslateAnimation translate1 = new TranslateAnimation(0, -840, 0, 285);//x原点,x移動先,y原点,y移動先
+            TranslateAnimation translate1 = new TranslateAnimation(0, -840, 0, 285);//基準値×1.5で算出(以下も同様)
             translate1.setDuration(3000);
             iv1.startAnimation(translate1);
             translate1.setRepeatCount(7);
@@ -246,9 +253,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private TapResult checkTapResult(double count, double[] array) {
-        if (checkTiming(count, array, 0.1)) return TapResult.PERFECT;
-        if (checkTiming(count, array, 1.0)) return TapResult.GOOD;
-        if (checkTiming(count, array, 2.0)) return TapResult.MISS;
+        if (checkTiming(count, array, 0.1d)) return TapResult.PERFECT;
+        if (checkTiming(count, array, 1.0d)) return TapResult.GOOD;
+        if (checkTiming(count, array, 2.0d)) return TapResult.MISS;
         return TapResult.BLANK;
     }
 
@@ -327,6 +334,7 @@ public class MainActivity extends ActionBarActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mainTimer.cancel();
+                            mSoundPool.release();
                             MainActivity.this.finish();
                         }
                     })

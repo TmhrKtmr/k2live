@@ -42,4 +42,21 @@
         android:src="@drawable/niwakamon"
         android:layout_gravity="right|center_vertical"
         android:layout_marginRight="-170dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/width_id"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/height_id"
+        android:layout_gravity="center_horizontal|bottom" />
 </FrameLayout>
