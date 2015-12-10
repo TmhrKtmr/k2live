@@ -6,9 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by yukumo3621 on 2015/02/03.
- */
 public class ResultActivity extends Activity {
     public TextView pText;
     public TextView gText;

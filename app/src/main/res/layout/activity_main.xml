@@ -192,8 +192,5 @@
         android:layout_gravity="right|center_vertical"
         android:background="#00FFFFFF"
         android:onClick="padTouch"
-         /><![CDATA[
-
-    />
-]]>
+         />
 </FrameLayout>

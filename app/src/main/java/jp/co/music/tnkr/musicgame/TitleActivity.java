@@ -18,33 +18,34 @@ import android.widget.TextView;
 public class TitleActivity extends Activity {
     private SoundPool mSoundPool;
     private int mSoundId;
+    private final int SOUND_POOL_MAX = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
 
-        mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        mSoundPool = new SoundPool(SOUND_POOL_MAX, AudioManager.STREAM_MUSIC, 0);
         mSoundId = mSoundPool.load(getApplicationContext(), R.raw.gamestart, 0);
 
         ImageView img = (ImageView) findViewById(R.id.gameStart);
-        Animation bound = AnimationUtils.loadAnimation(this, R.anim.updown);
+        Animation bound = AnimationUtils.loadAnimation(this, R.anim.upDownEffect);
         img.startAnimation(bound);
 
         //サイズ確認用
-        TextView txWidth = (TextView)findViewById(R.id.width_id);
-        TextView txHeight = (TextView)findViewById(R.id.height_id);
+        TextView dspWidth = (TextView)findViewById(R.id.width_id);
+        TextView dspHeight = (TextView)findViewById(R.id.height_id);
         WindowManager wm = getWindowManager();
-        Display disp = wm.getDefaultDisplay();
+        Display dsp = wm.getDefaultDisplay();
         Point size = new Point();
-        disp.getSize(size);
+        dsp.getSize(size);
         String width = "Width = " + size.x;
         String height = "Height = " + size.y;
-        txWidth.setText(width);
-        txHeight.setText(height);
+        dspWidth.setText(width);
+        dspHeight.setText(height);
     }
 
-    public void onStart(View v) {
+    public void gameStart(View v) {
         mSoundPool.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

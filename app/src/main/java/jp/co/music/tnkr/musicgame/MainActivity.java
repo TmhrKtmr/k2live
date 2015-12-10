@@ -34,10 +34,10 @@ public class MainActivity extends ActionBarActivity {
 
     private Timer mainTimer;                  //タイマー用
     private MainTimerTask mainTimerTask;      //タイマタスククラス
-    private TextView countText1;              //テキストビュー
+    private TextView countDown;
     private double count = 0.00;              //カウント
     private Handler mHandler = new Handler(); //UI Threadへのpost用ハンドラ
-    private double musicTime = 33.00;         //曲の時間
+    private double musicTime = 33.00;
     //判定カウント
     public TextView countText2;
     public TextView countText3;
@@ -51,10 +51,10 @@ public class MainActivity extends ActionBarActivity {
     private ImageView missImage;
     private ImageView goodImage;
 
-    public double[] PERFECT_1 = {3.00, 6.00, 9.00, 12.00, 15.00, 18.00, 21.00, 24.00};
-    public double[] PERFECT_2 = {5.00, 10.00, 15.00, 20.00, 25.00};
-    public double[] PERFECT_3 = {9.00, 18.00, 27.00};
-    public double[] PERFECT_4 = {7.00, 14.00, 21.00, 28.00};
+    public double[] justTimingR = {3.00, 6.00, 9.00, 12.00, 15.00, 18.00, 21.00, 24.00};
+    public double[] justTimingG = {5.00, 10.00, 15.00, 20.00, 25.00};
+    public double[] justTimingB = {9.00, 18.00, 27.00};
+    public double[] justTimingY = {7.00, 14.00, 21.00, 28.00};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class MainActivity extends ActionBarActivity {
         this.mainTimerTask = new MainTimerTask();
 
         //テキストビュー
-        this.countText1 = (TextView) findViewById(R.id.count_text1);
+        this.countDown = (TextView) findViewById(R.id.count_text1);
         this.countText2 = (TextView) findViewById(R.id.count_perfect);
         this.countText3 = (TextView) findViewById(R.id.count_good);
         this.countText4 = (TextView) findViewById(R.id.count_miss);
@@ -152,7 +152,7 @@ public class MainActivity extends ActionBarActivity {
     public void padTouch(View v) {
 
         int[] buttons = {R.id.button1, R.id.button2, R.id.button3, R.id.button4};
-        double[][] perfects = new double[][]{PERFECT_1, PERFECT_2, PERFECT_3, PERFECT_4};
+        double[][] perfects = new double[][]{justTimingR, justTimingG, justTimingB, justTimingY};
 
         for (int i = 0; i < buttons.length; i++) {//buttonsとperfectsの数が同じなので
             if (v.getId() == buttons[i]) {
@@ -232,7 +232,7 @@ public class MainActivity extends ActionBarActivity {
                     //実行間隔分を加算処理
                     count += 1.0;
                     //画面にカウントを表示
-                    countText1.setText(String.valueOf(count));
+                    countDown.setText(String.valueOf(count));
 
                     if (missCount >= 5) {
                         gameOver();
